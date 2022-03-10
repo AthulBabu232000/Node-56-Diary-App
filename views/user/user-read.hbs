@@ -1,0 +1,16 @@
+<section class="user-read container-fluid">
+
+{{#each diaryContent}}
+  <div class="card-deck">
+        <div class="card">
+        <div class="card-header">{{this.username}}</div>
+
+          <div class="card-body">
+                <h5 class="card-title">{{this.heading}}</h5>
+            <p class="card-text">{{this.content}}</p>
+          </div>
+          <div class="card-footer">{{this.timestamp}}</div>
+        </div>
+    </div>
+{{/each}}
+</section>

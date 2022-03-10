@@ -1,5 +1,13 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  position:relative;
+  
+}
+
 body {
-  padding: 50px;
+  overflow-x:hidden ;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
