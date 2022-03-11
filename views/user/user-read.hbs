@@ -19,7 +19,7 @@
     <div class="card">
       <div class="card-header">
         <div class="row mx-auto">
-          <div class="col-6 mx-auto d-flex justify-content-start" id="datestamp">
+          <div class="col-6 mx-auto d-flex justify-content-start">
             {{this.datestamp}}
           </div>
           <div class="col-6 mx-auto d-flex justify-content-end">
@@ -32,7 +32,7 @@
         <h3 class="card-title mx-auto text-center text-capitalize py-2"
           style="border:1px solid #0f9eea; color:#0f9eea;">{{this.heading}}</h3>
         <p class="card-text">{{this.content}}</p>
-        <p class="card-text" id="markDown"></p>
+        <p class="card-text markDown"></p>
       </div>
       <div class="card-footer ml-auto">
         <p class="">{{this.username}}</p>
@@ -40,7 +40,9 @@
     </div>
   </div>
   <script>
-    var mark = document.getElementById('markDown');
+    console.log(typeof(parseInt(`{{@index}}`)));
+
+    var mark = document.getElementsByClassName('markDown')[parseInt(`{{@index}}`)];
     var str = `{{this.markdown}}`;
     String.prototype.allReplace = function (obj) {
       var retStr = this;
@@ -51,26 +53,9 @@
     };
     
     mark.innerHTML=str.allReplace({'&lt;': '<', '&gt;': '>'});
+    console.log(mark.innerHTML);
   </script>
   {{/each}}
 
-  <script>
-   
-    function findData(e){
-     const date=document.querySelectorAll('.card-header');
-     console.log(date);
-      const searchDate=document.getElementById('datechecker').value;
 
-      const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-let name = month[searchDate.getMonth()];
-console.log(month);
-let day = searchDate.getDay();
-console.log(day);
-
-      const dateStamp=document.getElementById('datestamp').innerHTML;
-      
-
-
-    }
-  </script>
 </section>
