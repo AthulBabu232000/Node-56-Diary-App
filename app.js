@@ -6,7 +6,6 @@ var logger = require('morgan');
 var db=require('./config/connection');//getting database connection from config folder
 var userRouter = require('./routes/user');
 var session=require('express-session');
-
 var hbs=require('express-handlebars');//npm install express-handlebars
 var app = express();
 var fileUpload=require('express-fileupload');

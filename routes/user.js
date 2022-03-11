@@ -2,12 +2,22 @@ var express = require("express");
 var router = express.Router();
 var userHelper = require("../helpers/user-helper");
 var diaryHelper = require("../helpers/diary-helper");
+var md= require('markdown-it')({
+  html:false,
+});
+
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/write", function (req, res, next) {
+  
   let user = req.session.user;
-  console.log(user, "printing user from user js");
-  res.render("user/user-write", { title: "Express", admin: false, user: user });
+  if(user){
+    var result = md.render('##markdown-it rulezz!');
+    res.render("user/user-write", { title: "Express", admin: false, user: user,result:result });
+ 
+  }else{
+    res.redirect('/noAccount');
+  }
 });
 router.get("/login", (req, res) => {
   res.render("user/login");
@@ -15,10 +25,17 @@ router.get("/login", (req, res) => {
 router.get("/signup", (req, res) => {
   res.render("user/signup");
 });
+router.get('/alreadyuser',(req,res)=>{
+  res.render('user/alreadyuser');
+});
 router.post("/signup", (req, res) => {
   userHelper.doSignup(req.body).then((response) => {
     // console.log(response);
-    res.redirect('/signup')
+    if(response=='$2b$10$S/kte5Zu/jjqn73C3U8XfevCTBteNPtN8RzYGeubL1VQMQgN5J5x.'){
+      res.redirect('/alreadyuser');
+    }else{
+    res.redirect('/signup');
+    }
   });
 });
 router.post("/login", (req, res) => {
@@ -53,7 +70,7 @@ router.post("/user-write", (req, res) => {
   }
 });
 
-  router.get("/read", function (req, res, next) {
+  router.get("/", function (req, res, next) {
 
     let user = req.session.user;
    
@@ -62,7 +79,7 @@ router.post("/user-write", (req, res) => {
   
    
      console.log(diaryContent);
-        res.render("user/user-read", { diaryContent:diaryContent });
+        res.render("user/user-read", { diaryContent:diaryContent,user:user });
       });
     } else {
       res.redirect("/noAccount");

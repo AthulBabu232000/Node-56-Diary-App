@@ -1,4 +1,4 @@
-<section class="user row">
+<section class="user-write row">
 
 <div class="col-md-10 mx-auto pt-4">
 
@@ -7,29 +7,30 @@
 </div>
   
 <form class="form-group" action="/user-write" method="post">
- 
+ {{!-- {{result}} --}}
  <div class="row mx-auto mt-2 mb-3">
    <input type="text" name="username" id="username" value="{{user.username}}">
    <input type="text" name="timestamp" id="timestamp">
     <label for="heading">Enter headline</label>
-  <input type="text" name="heading" id="heading" class="form-control" placeholder="" aria-describedby="helpId">
+  <input type="text" required name="heading" id="heading" class="form-control" placeholder="" aria-describedby="helpId" style=" background-color:#121212;color:#c7bfaf;">
 
  </div>
 
  <div class="row mx-auto">
 
    <label for="content">Enter content</label>
- <textarea name="content" id="content" class="form-control" cols="100" width="100%" rows="10"></textarea>
+ <textarea required style=" background-color:#121212;color:#c7bfaf;" name="content" id="content" class="form-control" cols="100" width="100%" rows="10"></textarea>
  </div>
  <script>
   var timeStampInput=document.getElementById('timestamp');
   var usernameInput=document.getElementById('username');
   var date=new Date();
-  timeStampInput.value=date;
+  timeStampInput.value=date.toString().substr(0,24);
   usernameInput.style.display='none';
   timeStampInput.style.display='none';
 </script>
-<button class="btn btn-outline-success form-control mt-4" type="submit">Submit</button>
+
+<button class="btn form-control mt-4" type="submit">Submit</button>
 </form>
 </div>
 

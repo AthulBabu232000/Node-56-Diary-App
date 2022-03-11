@@ -6,11 +6,103 @@
   
 }
 
+:root{
+ --bgClr:#000000;
+ --secClr:#0f9eea;
+ --crdClr:#121212;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Poppins&display=swap');
+
 body {
   overflow-x:hidden ;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  font-family: 'Hubballi', cursive;
+  background-color: var(--bgClr);
+/* font-family: 'Poppins', sans-serif; */
 }
 
 a {
-  color: #00B7FF;
+  /* color: #00B7FF; */
+  color:var(--bgClr) !important;
+}
+.navbar, .nav-item{
+background-color:var(--secClr) !important;
+
+}
+/* user read section */
+.container-fluid{
+  width:100%;
+  min-height:100vh;
+  padding-top:20px;
+}
+.user-read{
+  background-color:var(--bgClr);
+}
+.user-read .card-deck .card{
+
+  background-color:var(--crdClr);
+  color:#c7bfaf;
+  border:1px solid var(--secClr);
+}
+
+/* user write */
+
+.user-write{
+  color:#c7bfaf
+}
+.user-write input, input:focus,input:hover, textarea{
+  background-color:#121212;
+  border:1px solid var(--secClr) !important;
+}
+
+.user-write .btn{
+  border:1px solid var(--secClr);
+  color:var(--secClr) !important;
+}
+.user-write .btn:focus{
+  background-color:var(--secClr);
+  color:var(--bgClr) !important;
+}
+
+/* login */
+
+#login{
+  color:#c7bfaf;
+}
+#login .btn, #signup .btn{
+  background-color:var(--secClr);
+}
+#login input, input:focus,input:hover{
+  background-color:#121212;
+  border:1px solid var(--secClr) !important;
+}
+.login-now-header, .link-info{
+  color:var(--secClr) !important;
+}
+
+label{
+  text-transform: capitalize;
+}
+
+#signup{
+  color:#c7bfaf;
+
+}
+#signup input, input:focus,input:hover{
+  background-color:#121212;
+  border:1px solid var(--secClr) !important;
+}
+
+.dropdown-menu{
+  background-color:var(--secClr);
+}
+
+/* noAccount section */
+.noAccount .alert{
+  color:var(--secClr);
+  border:2px solid var(--secClr);
+}
+.alreadyuser{
+  color:var(--secClr);
 }

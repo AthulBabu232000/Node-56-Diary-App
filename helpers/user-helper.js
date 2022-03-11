@@ -2,17 +2,26 @@ var db = require("../config/connection");
 var collection = require("../config/collections");
 const bcrypt = require("bcrypt");
 module.exports = {
-  doSignup: (userData) => {
-    return new Promise(async (resolve, reject) => {
-      userData.password = await bcrypt.hash(userData.password, 10);
-      db.get()
-        .collection(collection.USER_COLLECTION)
-        .insertOne(userData)
-        .then((data) => {
-          console.log(data);
-          resolve(data);
-        });
-    });
+  doSignup: async (userData) => {
+let alreadyExists= await db.get().collection(collection.USER_COLLECTION).findOne({
+  username:userData.username
+})
+console.log(alreadyExists);
+if(alreadyExists === null){
+  return new Promise(async (resolve, reject) => {
+    userData.password = await bcrypt.hash(userData.password, 10);
+    db.get()
+      .collection(collection.USER_COLLECTION)
+      .insertOne(userData)
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      });
+  });
+}else{
+  return '$2b$10$S/kte5Zu/jjqn73C3U8XfevCTBteNPtN8RzYGeubL1VQMQgN5J5x.';
+}
+  
   },
 
   doLogin:(userData)=>{

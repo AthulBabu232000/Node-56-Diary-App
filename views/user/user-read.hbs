@@ -1,15 +1,17 @@
 <section class="user-read container-fluid">
 
 {{#each diaryContent}}
-  <div class="card-deck">
+  <div class="card-deck mb-3">
         <div class="card">
-        <div class="card-header">{{this.username}}</div>
+        <div class="card-header">{{this.timestamp}}</div>
 
           <div class="card-body">
-                <h5 class="card-title">{{this.heading}}</h5>
+                <h3 class="card-title mx-auto text-center text-capitalize" style="color:#0f9eea">{{this.heading}}</h3>
             <p class="card-text">{{this.content}}</p>
           </div>
-          <div class="card-footer">{{this.timestamp}}</div>
+          <div class="card-footer ml-auto">
+            <p class="">{{this.username}}</p>
+          </div>
         </div>
     </div>
 {{/each}}
