@@ -1,18 +1,76 @@
 <section class="user-read container-fluid">
+<div class="row">
+  <div class="col-12 mx-auto">
+    <div class="input-group mb-3">
+  <input type="date" class="form-control" id="datechecker"placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn" type="button" onclick="findData(this)">Find</button>
+  </div>
+</div>
 
-{{#each diaryContent}}
+
+<div class="row">
+  <h2 class="mx-auto text-capitalize mt-3 mb-5" style="color:#0f9eea;">write something today</h2>
+</div>
+  </div>
+</div>
+  {{#each diaryContent}}
   <div class="card-deck mb-3">
-        <div class="card">
-        <div class="card-header">{{this.timestamp}}</div>
-
-          <div class="card-body">
-                <h3 class="card-title mx-auto text-center text-capitalize" style="color:#0f9eea">{{this.heading}}</h3>
-            <p class="card-text">{{this.content}}</p>
+    <div class="card">
+      <div class="card-header">
+        <div class="row mx-auto">
+          <div class="col-6 mx-auto d-flex justify-content-start" id="datestamp">
+            {{this.datestamp}}
           </div>
-          <div class="card-footer ml-auto">
-            <p class="">{{this.username}}</p>
+          <div class="col-6 mx-auto d-flex justify-content-end">
+            {{this.timestamp}}
           </div>
         </div>
+      </div>
+
+      <div class="card-body">
+        <h3 class="card-title mx-auto text-center text-capitalize py-2"
+          style="border:1px solid #0f9eea; color:#0f9eea;">{{this.heading}}</h3>
+        <p class="card-text">{{this.content}}</p>
+        <p class="card-text" id="markDown"></p>
+      </div>
+      <div class="card-footer ml-auto">
+        <p class="">{{this.username}}</p>
+      </div>
     </div>
-{{/each}}
+  </div>
+  <script>
+    var mark = document.getElementById('markDown');
+    var str = `{{this.markdown}}`;
+    String.prototype.allReplace = function (obj) {
+      var retStr = this;
+      for (var x in obj) {
+        retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
+      }
+      return retStr;
+    };
+    
+    mark.innerHTML=str.allReplace({'&lt;': '<', '&gt;': '>'});
+  </script>
+  {{/each}}
+
+  <script>
+   
+    function findData(e){
+     const date=document.querySelectorAll('.card-header');
+     console.log(date);
+      const searchDate=document.getElementById('datechecker').value;
+
+      const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+let name = month[searchDate.getMonth()];
+console.log(month);
+let day = searchDate.getDay();
+console.log(day);
+
+      const dateStamp=document.getElementById('datestamp').innerHTML;
+      
+
+
+    }
+  </script>
 </section>

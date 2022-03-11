@@ -1,8 +1,13 @@
 var db = require("../config/connection");
 var collection = require("../config/collections");
+var md= require('markdown-it')({
+  html:false,
+});
 module.exports = {
   enterDiary: (diaryData) => {
     return new Promise(async (resolve, reject) => {
+      diaryData.markdown=md.render(diaryData.markdown);
+      console.log(diaryData.markdown);
       db.get()
         .collection(collection.DIARY_COLLECTION)
         .insertOne(diaryData)

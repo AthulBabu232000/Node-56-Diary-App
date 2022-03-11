@@ -12,8 +12,9 @@ router.get("/write", function (req, res, next) {
   
   let user = req.session.user;
   if(user){
-    var result = md.render('##markdown-it rulezz!');
-    res.render("user/user-write", { title: "Express", admin: false, user: user,result:result });
+
+  
+    res.render("user/user-write", { title: "Express", admin: false, user: user});
  
   }else{
     res.redirect('/noAccount');
@@ -75,11 +76,14 @@ router.post("/user-write", (req, res) => {
     let user = req.session.user;
    
     if (user) {
+
       diaryHelper.getAllDiary(user).then((diaryContent) => {
   
+        // var result = md.render(diaryContent.markdown);
+        console.log(diaryContent.markdown);
+        console.log(diaryContent);
    
-     console.log(diaryContent);
-        res.render("user/user-read", { diaryContent:diaryContent,user:user });
+        res.render("user/user-read", { diaryContent:diaryContent,user:user});
       });
     } else {
       res.redirect("/noAccount");

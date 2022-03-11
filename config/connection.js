@@ -4,8 +4,8 @@ const state={
 };
 
 module.exports.connect=function(done){
-    const url='mongodb://localhost:27017';
-    const dbname='diarytinker';
+    const url='mongodb+srv://athul:asbupsilonno1@cluster0.223ob.mongodb.net';
+    const dbname='myFirstDatabase';
     mongoClient.connect(url,(err,data)=>{
         if(err) return done(err);
         state.db=data.db(dbname);

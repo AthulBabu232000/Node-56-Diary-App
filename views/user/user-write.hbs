@@ -1,16 +1,23 @@
 <section class="user-write row">
 
 <div class="col-md-10 mx-auto pt-4">
+<div class="row text-light" id="markdowncontent">
 
+</div>
 <div class="row mx-auto">
   <h3 class="mx-auto">Write your diary</h3>
 </div>
   
 <form class="form-group" action="/user-write" method="post">
- {{!-- {{result}} --}}
- <div class="row mx-auto mt-2 mb-3">
+
+<div id="content">
+
+</div>
+<div class="row mx-auto mt-2 mb-3">
    <input type="text" name="username" id="username" value="{{user.username}}">
    <input type="text" name="timestamp" id="timestamp">
+   <input type="text" name="datestamp" id="datestamp">
+
     <label for="heading">Enter headline</label>
   <input type="text" required name="heading" id="heading" class="form-control" placeholder="" aria-describedby="helpId" style=" background-color:#121212;color:#c7bfaf;">
 
@@ -21,13 +28,28 @@
    <label for="content">Enter content</label>
  <textarea required style=" background-color:#121212;color:#c7bfaf;" name="content" id="content" class="form-control" cols="100" width="100%" rows="10"></textarea>
  </div>
+
+ <div class="row mx-auto">
+
+   <label for="markdown">Markdown content</label>
+ <textarea required style=" background-color:#121212;color:#c7bfaf;" name="markdown" id="markdown" class="form-control" cols="100" width="100%" rows="10"></textarea>
+ </div>
  <script>
   var timeStampInput=document.getElementById('timestamp');
   var usernameInput=document.getElementById('username');
+  var dateStampInput=document.getElementById('datestamp');
+  var content=document.getElementById('markdowncontent');
   var date=new Date();
-  timeStampInput.value=date.toString().substr(0,24);
+  timeStampInput.value=date.toString().substr(16,9);
+  dateStampInput.value=date.toLocaleDateString();
   usernameInput.style.display='none';
   timeStampInput.style.display='none';
+  dateStampInput.style.display='none';
+ 
+
+</script>
+<script>
+ 
 </script>
 
 <button class="btn form-control mt-4" type="submit">Submit</button>

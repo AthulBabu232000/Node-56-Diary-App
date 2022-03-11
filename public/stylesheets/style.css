@@ -39,6 +39,10 @@ background-color:var(--secClr) !important;
 .user-read{
   background-color:var(--bgClr);
 }
+.user-read .btn{
+  color:var(--secClr);
+  font-weight:bolder;
+}
 .user-read .card-deck .card{
 
   background-color:var(--crdClr);
@@ -106,3 +110,4 @@ label{
 .alreadyuser{
   color:var(--secClr);
 }
+
