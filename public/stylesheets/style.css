@@ -16,7 +16,6 @@
 
 body {
   overflow-x:hidden ;
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   font-family: 'Hubballi', cursive;
   background-color: var(--bgClr);
 /* font-family: 'Poppins', sans-serif; */
@@ -111,3 +110,12 @@ label{
   color:var(--secClr);
 }
 
+@media only screen and (max-width:540px){
+  body{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  }
+  .noAccount h2{
+    font-size:17px !important;
+  }
+}
