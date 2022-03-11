@@ -1,25 +1,26 @@
 <section class="user-read container-fluid">
-<div class="row">
-  <div class="col-12 mx-auto">
-    <div class="input-group mb-3">
-  <input type="date" class="form-control" id="datechecker"placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <button class="btn" type="button" onclick="findData(this)">Find</button>
-  </div>
-</div>
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <div class="input-group mb-3">
+        <input type="date" class="form-control" id="datechecker" placeholder="Recipient's username"
+          aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn" type="button" onclick="findData()">Find</button>
+        </div>
+      </div>
 
 
-<div class="row">
-  <h2 class="mx-auto text-capitalize mt-3 mb-5" style="color:#0f9eea;">write something today</h2>
-</div>
+      <div class="row">
+        <h2 class="mx-auto text-capitalize mt-3 mb-5" style="color:#0f9eea;">write something today</h2>
+      </div>
+    </div>
   </div>
-</div>
   {{#each diaryContent}}
   <div class="card-deck mb-3">
     <div class="card">
       <div class="card-header">
         <div class="row mx-auto">
-          <div class="col-6 mx-auto d-flex justify-content-start">
+          <div class="col-6 mx-auto d-flex justify-content-start dateStamp">
             {{this.datestamp}}
           </div>
           <div class="col-6 mx-auto d-flex justify-content-end">
@@ -40,7 +41,7 @@
     </div>
   </div>
   <script>
-    console.log(typeof(parseInt(`{{@index}}`)));
+
 
     var mark = document.getElementsByClassName('markDown')[parseInt(`{{@index}}`)];
     var str = `{{this.markdown}}`;
@@ -51,9 +52,40 @@
       }
       return retStr;
     };
-    
-    mark.innerHTML=str.allReplace({'&lt;': '<', '&gt;': '>'});
-    console.log(mark.innerHTML);
+
+    mark.innerHTML = str.allReplace({ '&lt;': '<', '&gt;': '>' });
+
+
+
+    function findData() {
+      var datepreStamp = document.querySelectorAll('.dateStamp');
+      console.log(datepreStamp);
+      var dateChecker = document.getElementById('datechecker').value.toString();
+      var dateCheckerInner = dateChecker.split('-');
+      var dateCheckerDay = parseInt(dateCheckerInner[2]);
+      var dateCheckerMonth = parseInt(dateCheckerInner[1]);
+      var dateCheckerYear = parseInt(dateCheckerInner[0]);
+      for (let i = 0; i < datepreStamp.length; i++) {
+        var dateStampBody=document.getElementsByClassName('dateStamp')[i];
+        var dateStamp = document.getElementsByClassName('dateStamp')[i].innerHTML.toString().trim();
+        var dateStampInner = dateStamp.split('/');
+        var dateStampDay = parseInt(dateStampInner[1]);
+        var dateStampMonth = parseInt(dateStampInner[0]);
+        var dateStampYear = parseInt(dateStampInner[2]);
+        if(dateCheckerDay===dateStampDay && dateCheckerMonth===dateStampMonth && dateCheckerYear===dateStampYear){
+          console.log("all are same")
+          dateStampBody.parentElement.parentElement.parentElement.parentElement.style.display='block';
+        }else{
+          console.log("all are different");
+          dateStampBody.parentElement.parentElement.parentElement.parentElement.style.display='none';
+
+        }
+      }
+
+
+
+    }
+
   </script>
   {{/each}}
 
