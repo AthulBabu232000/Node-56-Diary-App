@@ -1,14 +1,16 @@
-content.innerHTML=`{{result}}`;
-var str=`{{result}}`;
-console.log(content.innerHTML);
-String.prototype.allReplace = function(obj) {
-  var retStr = this;
-  for (var x in obj) {
-      retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
-  }
-  return retStr;
-};
-console.log(str.allReplace({'&lt;': '<', '&gt;': '>'}));
-content.innerHTML=str.allReplace({'&lt;': '<', '&gt;': '>'});
-content.innerHTML = content.innerHTML.replace(/&lt;/g,"<");
-console.log(content.innerHTML);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
