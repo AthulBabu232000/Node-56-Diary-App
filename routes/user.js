@@ -35,7 +35,7 @@ router.post("/signup", (req, res) => {
     if(response=='$2b$10$S/kte5Zu/jjqn73C3U8XfevCTBteNPtN8RzYGeubL1VQMQgN5J5x.'){
       res.redirect('/alreadyuser');
     }else{
-    res.redirect('/signup');
+    res.redirect('/login');
     }
   });
 });
